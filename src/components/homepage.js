@@ -1,6 +1,7 @@
 // import react, { useState, useEffect } from "react";
 import Navbar from "./navbar";
 import Login from "./login";
+import Register from "./register";
 
 
 function Homepage() {
@@ -10,6 +11,7 @@ function Homepage() {
         <div>
             <Navbar />
             <Login />
+            <Register/>
         </div>
     )
 }
