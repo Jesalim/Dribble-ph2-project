@@ -3,52 +3,29 @@ import React from "react";
 const Navbar = () => {
     
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-secondary">
-        <a className="navbar-brand m-1" href="#nav">
-          NewDrib   
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false" 
-          aria-label="Toggle navigation"
-        > 
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul className="navbar-nav">
-          <li className="nav-item active">
-            <a className="nav-link" href="#about">
-              Home <span className="sr-only">(current)</span>
-            </a>
-          </li>
+      <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark">
+        <div class="container-fluid">
+          <a href="#home" className="navbar-brand">HOME TO THE WORLD'S BEST DESIGN AND CREATIVE PROFESSIONALS.💻💯</a>
+          <button>
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+        <li className="nav-item">
+          <a className="nav-link active" aria-current="page" href="#home">Home</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="#About">About</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link disabled" href="#contact-us">Contact-us</a>
+        </li>
+      </ul>
+            
+          </div>
           
-          <li className="nav-item dropdown">
-            <a
-              className="nav-link dropdown-toggle"
-              href="#contact"
-              id="navbarDropdownMenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              About Us
-            </a>
-            <div
-              className="dropdown-menu"
-              aria-labelledby="navbarDropdownMenuLink"
-            >
-              <a className="dropdown-item" href="#projects">
-                Contact Information 
-              </a>
-             
-            </div>
-          </li>
-        </ul>
-      </div>
+        </div>
+       
     </nav>
   );
 };
