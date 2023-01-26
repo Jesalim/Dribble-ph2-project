@@ -1,48 +1,74 @@
-import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Token from "./token";
 
+import React, { useState } from 'react';
 
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
-  // function validateForm() {
-  //   return email.length > 0 && password.length > 0;
-  // }
+const API_URL = 'https://api.dribbble.com/v2/user?access_token='
+const ACCESS_TOKEN = '43179613111cce84d49ba4171c92163f0088573c1e513aef414a4766e41350a3'
 
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
+  const handleSubmit = async e => {
+    e.preventDefault();
+    try {
+      // handle login logic here, for example:
+      const res = await fetch(API_URL + ACCESS_TOKEN, {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: { 'Content-Type': 'application/json', 
+                  'authorization': 'Bearer ' + ACCESS_TOKEN}
+      });
+      if (!res.ok) {
+        throw new Error(res.statusText);
+      }
+      // handle successful login
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  // useEffect(() => {
+  //   // check if user is logged in
+  //   if (loggedIn) {
+  //     // redirect to profile
+  //     window.location.href = '/profile';
+  //   }
+  // }, [loggedIn]);
 
   return (
-    <card className="Login">
-      <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            autoFocus
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
-        </Form.Group>
-        <Form.Group size="lg" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-
-        <Token/>
-
-      </Form>
-
-    </card>
-
+    <div className="App">
+    <div className="card">
+    <h2 className="card-header">Login Here</h2>
+    <div className="form-group">
+      <form onSubmit={handleSubmit}>
+      <label className="form-control" htmlFor="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        value={email}
+        placeholder="E-mail"
+        onChange={e => setEmail(e.target.value)}
+      />
+      
+    
+      <label className="form-control" htmlFor="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        value={password}
+        placeholder="Password"
+        onChange={e => setPassword(e.target.value)}
+      />
+      
+      <br />
+      {error && <p>{error}</p>}
+      <button className="submit-button" type="submit" onClick={handleSubmit}>Login</button>
+    </form>
+    </div>
+    </div>
+    </div>
   );
-
 }
+
+export default LoginForm;
