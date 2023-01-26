@@ -87,16 +87,16 @@ Dribble project
 
 
 #   Installations 
-      npm install
+        npm install
 
 
-  2     npm install --save react-bootstrap-validation
+        npm install --save react-bootstrap-validation
 
 
-  3     npm install axius
+         npm install axius
 
 
-  4     npm install react-router-dom or yarn add react-router-dom
+        npm install react-router-dom or yarn add react-router-dom
 
 
 
