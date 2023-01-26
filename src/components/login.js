@@ -1,40 +1,38 @@
 
 import React, { useState } from 'react';
+import Profile from './profile';
+import { Routes, Route, Link } from "react-router-dom"
 
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
-const API_URL = 'https://api.dribbble.com/v2/user?access_token='
-const ACCESS_TOKEN = '43179613111cce84d49ba4171c92163f0088573c1e513aef414a4766e41350a3'
+// const API_URL = 'https://api.dribbble.com/v2/user?access_token='
+const API_URL = 'http://localhost:3000/users'
+// const ACCESS_TOKEN = '43179613111cce84d49ba4171c92163f0088573c1e513aef414a4766e41350a3'
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    try {
-      // handle login logic here, for example:
-      const res = await fetch(API_URL + ACCESS_TOKEN, {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-        headers: { 'Content-Type': 'application/json', 
-                  'authorization': 'Bearer ' + ACCESS_TOKEN}
-      });
-      if (!res.ok) {
-        throw new Error(res.statusText);
-      }
-      // handle successful login
-    } catch (err) {
-      setError(err.message);
+function handleSubmit (data) {
+  
+  return fetch(API_URL, {
+    method: 'POST', 
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new error('Failed to fetch data')
     }
-  };
+    return response.json()
+  })
+  .catch(error => {
+    console.error(error)
+  })
+}
 
-  // useEffect(() => {
-  //   // check if user is logged in
-  //   if (loggedIn) {
-  //     // redirect to profile
-  //     window.location.href = '/profile';
-  //   }
-  // }, [loggedIn]);
+
 
   return (
     <div className="App">
@@ -63,10 +61,13 @@ const ACCESS_TOKEN = '43179613111cce84d49ba4171c92163f0088573c1e513aef414a4766e4
       
       <br />
       {error && <p>{error}</p>}
-      <button className="submit-button" type="submit" onClick={handleSubmit}>Login</button>
+      <Link type="submit" to='./profile' onClick={handleSubmit}>Login</Link>
     </form>
     </div>
     </div>
+    <Routes>
+      <Route exact path="/profile" element = {Profile}></Route>
+    </Routes>
     </div>
   );
 }

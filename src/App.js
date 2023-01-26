@@ -2,13 +2,14 @@
 import './App.css';
 import Homepage from './components/homepage';
 import LoginForm from './components/login';
+import Profile from './components/profile';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <Homepage/>
-      <LoginForm/>  
-    </div>
+    <BrowserRouter className="App">
+      <Homepage />
+    </BrowserRouter>
   );
 }
 

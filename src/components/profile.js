@@ -1,39 +1,76 @@
-import { useState } from 'react';
+import React, {useState} from 'react';
 
-function Register() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+// const accessToken = '9f061d26c5a8be96b17a81718959a67dd54ca9669ca41752777193f7cc5be7c3';
 
-  function handleEmailChange(event) {
-    setEmail(event.target.value);
-  }
+// component to fetch and list shots form dribble api
 
-  function handlePasswordChange(event) {
-    setPassword(event.target.value);
-  }
+const API_URL = 'http://localhost:3000/users'
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    // Send the email and password to your server here
-    console.log('Email:', email);
-    console.log('Password:', password);
-  }
+// const Profile = () => {
+//     const [users, setUsers] = useState([]);
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Email:
-        <input type="email" value={email} onChange={handleEmailChange} />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input type="password" value={password} onChange={handlePasswordChange} />
-      </label>
-      <br />
-      <button type="submit">Register</button>
-    </form>
-  );
+    // useEffect(() => {
+    //     fetch( API_URL)
+    //         .then(res => res.json())
+    //         .then(data => { 
+    //           setUsers(data);
+    //         })
+    // }, []);
+
+    function Profile (data) {
+        const [users, setUsers] = useState([])
+        const [error, setError] = useState(null);
+  
+        return fetch(API_URL, {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new error('Failed to fetch data')
+          }
+          return response.json(setUsers)
+        })
+        .catch(error => {
+          console.error(error)
+        })
+    const userData = users.data.map ((user) => {
+
+    return (
+        <div>
+              <div key={data.id}>
+                <img src='data.avatar_url' alt='Profile Picture'/>
+                <ul>
+                    <li>{data.bio}</li>
+                    <li>{data.can_upload_shot}</li>
+                    <li>{data.created_at}</li>
+                    <li>{data.followers_count}</li>
+                    <li>{data.html_url}</li>
+                    <li>{data.location}</li>
+                    <li>{data.login}</li>
+                    <li>{data.name}</li>
+                    <li>{data.email}</li>
+                </ul>
+              </div>
+            
+        </div>
+    )
+})
+
 }
 
-export default Register;
+
+export default Profile
+
+
+{/* <div className="dribble-shots">
+{users.map(user => (
+    <div className="shot" key={user.id}>
+        <img src={user.images.hidpi} alt={user.title}/>
+        <button onClick={Profile}>view profile</button>
+    </div>
+))}
+</div> */}
