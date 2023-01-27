@@ -1,76 +1,75 @@
-import React, {useState} from 'react';
+import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import DribbleShots from "./dribbleShots";
 
-// const accessToken = '9f061d26c5a8be96b17a81718959a67dd54ca9669ca41752777193f7cc5be7c3';
+let accessToken = "43179613111cce84d49ba4171c92163f0088573c1e513aef414a4766e41350a3";
 
-// component to fetch and list shots form dribble api
+function Profile() {
+  const [userData, setUserData] = useState(null);
+  const fetchUser = () => {
+    axios
+      .get(`https://api.dribbble.com/v2/user?access_token=` + accessToken)
+      .then((res) => {
+        const fetchedUser = res.data;
+        setUserData(fetchedUser);
+      })
+      .catch((err) => console.log(err));
+  };
 
-const API_URL = 'http://localhost:3000/users'
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
-// const Profile = () => {
-//     const [users, setUsers] = useState([]);
-
-    // useEffect(() => {
-    //     fetch( API_URL)
-    //         .then(res => res.json())
-    //         .then(data => { 
-    //           setUsers(data);
-    //         })
-    // }, []);
-
-    function Profile (data) {
-        const [users, setUsers] = useState([])
-        const [error, setError] = useState(null);
-  
-        return fetch(API_URL, {
-          method: 'POST', 
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new error('Failed to fetch data')
-          }
-          return response.json(setUsers)
-        })
-        .catch(error => {
-          console.error(error)
-        })
-    const userData = users.data.map ((user) => {
-
-    return (
-        <div>
-              <div key={data.id}>
-                <img src='data.avatar_url' alt='Profile Picture'/>
-                <ul>
-                    <li>{data.bio}</li>
-                    <li>{data.can_upload_shot}</li>
-                    <li>{data.created_at}</li>
-                    <li>{data.followers_count}</li>
-                    <li>{data.html_url}</li>
-                    <li>{data.location}</li>
-                    <li>{data.login}</li>
-                    <li>{data.name}</li>
-                    <li>{data.email}</li>
-                </ul>
-              </div>
-            
+  const renderUser = () => {
+    if (userData) {
+      return (
+        <div className="App">
+          <div className="card">
+            <h1>Welcome Dear User</h1>
+          <div>
+            <Link to="/create">
+              <button className="btn btn-primary">Add Project</button>
+            </Link>
+          </div>
+          <div className="user-details">
+            <div className="user-avatar">
+              <img src={userData.avatar_url} alt={userData.name} />
+            </div>
+            <div className="user-info">
+              <h2>{userData.name}</h2>
+              <p>
+                <b>Bio:</b>
+                {userData.bio}
+              </p>
+              <p>{userData.location}</p>
+              <a href="mailto:{userData.email}">Send email</a> 
+              {/* eslint-disable-next-line */}
+              <a href={userData.html_url} target="_blank">
+                Dribbble
+              </a>
+            </div>
+          </div>
+          </div>
+          </div>
+        
+      );
+    } else {
+      return (
+        <div className="user-details">
+          <p>User details not available...</p>
         </div>
-    )
-})
+      );
+    }
+  };
 
+  return (
+    <div>
+      {renderUser()}
+      <DribbleShots/>
+          </div>
+  );
 }
 
-
-export default Profile
-
-
-{/* <div className="dribble-shots">
-{users.map(user => (
-    <div className="shot" key={user.id}>
-        <img src={user.images.hidpi} alt={user.title}/>
-        <button onClick={Profile}>view profile</button>
-    </div>
-))}
-</div> */}
+export default Profile;

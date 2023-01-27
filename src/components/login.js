@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Profile from './profile';
 import { Routes, Route, Link } from "react-router-dom"
 
-function LoginForm() {
+function LoginForm () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -61,13 +61,16 @@ function handleSubmit (data) {
       
       <br />
       {error && <p>{error}</p>}
-      <Link type="submit" to='./profile' onClick={handleSubmit}>Login</Link>
+      <Link to="profile" className="submit-button" type="submit" onClick={handleSubmit}>Login</Link>
     </form>
     </div>
     </div>
+    
+    
     <Routes>
-      <Route exact path="/profile" element = {Profile}></Route>
+      <Route path="/profile" element= {Profile}></Route>
     </Routes>
+    
     </div>
   );
 }

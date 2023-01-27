@@ -17,6 +17,7 @@
       "email": "huriakelvin@gmail.com",
       "teams": []
     },
+
     {
       "avatar_url": "https://cdn.dribbble.com/users/14842343/avatars/normal/d9a294ea9be3fdf836ca9ebf3d331605.jpeg?1674739373",
       "bio": "",
@@ -34,6 +35,7 @@
       "email": "jessica.gichuru@student.moringaschool.com",
       "teams": []
     },
+
     {
       "avatar_url": "https://cdn.dribbble.com/users/14813787/avatars/normal/e2ea8e2ec22a44023a78eb75501be3e2.jpeg?1674564319",
       "bio": "",
@@ -51,6 +53,7 @@
       "email": "christine.njoki@student.moringaschool.com",
       "teams": []
     },
+
     {
       "avatar_url": "https:default_avatars/avatar-8.png",
       "bio": "",
@@ -67,6 +70,31 @@
       "type": "User",
       "email": "billgates.kombo@student.moringaschool.com",
       "teams": []
+    },
+    
+    {
+      "id": 14842344
+    },
+    {
+      "id": 14842345
+    },
+    {
+      "id": 14842346
+    },
+    {
+      "id": 14842347
+    },
+    {
+      "id": 14842348
+    },
+    {
+      "id": 14842349
+    },
+    {
+      "id": 14842350
+    },
+    {
+      "id": 14842351
     }
   ]
 }
