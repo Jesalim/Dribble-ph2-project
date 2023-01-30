@@ -1,38 +1,125 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background: linear-gradient(135deg, #FF283D, #F7C2A3, #F7C2A3);
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.App .card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 0 10px 0 #00000033;
+}
+
+.App .card .card-header {
+  text-align: center;
+  margin: 0;
+}
+
+.App .card .signup-holder {
+  text-align: center;
+  color: #444;
+  font-size: small;
+  margin: 6px;
+}
+
+.App .card .signup-holder a {
+  color: #60a5ff;
+  padding: 4px;
+}
+
+.App .card .form {
+  padding: 12px 0;
+}
+
+.App .card .form-group {
+  margin: 12px 0;
+}
+
+.App .card .form-group .form-control {
+  border: none;
+  background-color: #F8F8F8;
+  padding: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.App .card .form-group .form-control:hover, .App .card .form-group .form-control:focus {
+  background-color: white;
+  box-shadow: 0 0 6px 0 #aaa6;
+}
+
+.App .card .form-group .form-control.half {
+  width: calc(50% - 2px);
+}
+
+.App .card .form-group .form-control.half:last-child {
+  margin-left: 4px;
+}
+
+.App .card .form-group .form-control:focus {
+  outline: none;
+}
+
+.App .card .form-group .form-control:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.App .card .form-group .form-control:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.App .card .form .submit-button {
+  border: none;
+  margin: 6px 0;
+  background-color: #4796FF;
   color: white;
+  padding: 12px;
+  position: relative;
+  border-radius: 8px;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.App .card .form .submit-button::before {
+  content: "";
+  display: block;
+  width: 13px;
+  height: 2px;
+  background-color: white;
+  border-radius: 2px;
+  position: absolute;
+  right: 16px;
+  top: 19px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App .card .form .submit-button::after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  border: 2px solid white;
+  border-left: transparent;
+  border-top: transparent;
+  transform: rotate(-45deg);
+  border-radius: 2px;
+  position: absolute;
+  right: 16px;
+  top: 14.5px;
+}
+
+.App .card .form .terms {
+  margin: 1rem 0;
+  font-size: small;
+  color: #777;
+  display: block;
+}
+
+.App .card .form .terms a {
+  color: #60a5ff;
+  padding: 0 2px;
+  text-decoration: none;
 }

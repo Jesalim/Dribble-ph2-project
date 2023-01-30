@@ -1,107 +1,73 @@
-// import React, { useState } from "react";
-// import Form from "react-bootstrap/Form";
-// import Token from "./token";
-
-
-// export default function Login() {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-
-//   // function validateForm() {
-//   //   return email.length > 0 && password.length > 0;
-//   // }
-
-//   function handleSubmit(event) {
-//     event.preventDefault();
-//   }
-
-//   return (
-//     <card className="Login">
-//       <Form onSubmit={handleSubmit}>
-//         <Form.Group size="lg" controlId="email">
-//           <Form.Label>Email</Form.Label>
-//           <Form.Control
-//             autoFocus
-//             type="email"
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//           />
-
-//         </Form.Group>
-//         <Form.Group size="lg" controlId="password">
-//           <Form.Label>Password</Form.Label>
-//           <Form.Control
-//             type="password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//           />
-//         </Form.Group>
-
-//         <Token/>
-
-//       </Form>
-
-//     </card>
-
-//   );
-
-// }
-
-
 import React, { useState } from 'react';
+import Profile from './profile';
+import { Routes, Route, Link } from "react-router-dom"
 
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    try {
-      // handle login logic here, for example:
-      const res = await fetch('/api/login', {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-        headers: { 'Content-Type': 'application/json' }
-      });
-      if (!res.ok) {
-        throw new Error(res.statusText);
-      }
-      // handle successful login
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+// const API_URL = 'https://api.dribbble.com/v2/user?access_token='
+const API_URL = 'http://localhost:3000/users'
+// const ACCESS_TOKEN = '43179613111cce84d49ba4171c92163f0088573c1e513aef414a4766e41350a3'
 
-  // useEffect(() => {
-  //   // check if user is logged in
-  //   if (loggedIn) {
-  //     // redirect to profile
-  //     window.location.href = '/profile';
-  //   }
-  // }, [loggedIn]);
+function handleSubmit (data) {
+  
+  return fetch(API_URL, {
+    method: 'POST', 
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new error('Failed to fetch data')
+    }
+    return response.json()
+  })
+  .catch(error => {
+    console.error(error)
+  })
+}
+
+
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="email">Email:</label>
+    <div className="App">
+    <div className="card">
+    <h2 className="card-header">Login Here</h2>
+    <div className="form-group">
+      <form onSubmit={handleSubmit}>
+      <label className="form-control" htmlFor="email">Email:</label>
       <input
         type="email"
         id="email"
         value={email}
+        placeholder="E-mail"
         onChange={e => setEmail(e.target.value)}
       />
-      <br />
-      <label htmlFor="password">Password:</label>
+      
+    
+      <label className="form-control" htmlFor="password">Password:</label>
       <input
         type="password"
         id="password"
         value={password}
+        placeholder="Password"
         onChange={e => setPassword(e.target.value)}
       />
+      
       <br />
       {error && <p>{error}</p>}
-      <button type="submit">Login</button>
+      <Link type="submit" to='./profile' onClick={handleSubmit}>Login</Link>
     </form>
+    </div>
+    </div>
+    <Routes>
+      <Route exact path="/profile" element = {Profile}></Route>
+    </Routes>
+    </div>
   );
 }
 
