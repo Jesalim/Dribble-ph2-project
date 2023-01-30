@@ -9,8 +9,9 @@
 .App .card {
   background-color: white;
   padding: 1.5rem;
-  border-radius: 0.8rem;
+  border-radius: 1.8rem;
   box-shadow: 0 0 10px 0 #00000033;
+  height: 75vh;
 }
 
 .App .card .card-header {
