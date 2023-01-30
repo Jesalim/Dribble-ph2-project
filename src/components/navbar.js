@@ -18,8 +18,9 @@ function Navbar() {
 
                 </ul>
             </card>
-            <Homepage />
+            
     <Routes>
+    <Route path="/" element= {<Homepage/>}></Route>
       <Route path="/login" element= {<LoginForm/>}></Route>
       <Route path="/profile" element= {<Profile/>}></Route>
       <Route path="/dribbleShots" element= {<DribbleShots/>}></Route>
