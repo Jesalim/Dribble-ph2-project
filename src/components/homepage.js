@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import { Routes, Route, Link } from "react-router-dom"
-import LoginForm from "./login";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert2"
+
 
 
 
@@ -88,9 +88,7 @@ Want more inspiration? Browse our search results.</p>
       </div>
       </div>
     
-      <Routes>
-      <Route path="/login" element= {<LoginForm/>}></Route>
-      </Routes>
+     
  </div>
   );
 }
