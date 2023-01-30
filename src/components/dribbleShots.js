@@ -25,9 +25,15 @@ const DribbleShots = () => {
             <Link to="/create">
               <button className="btn btn-primary">Add Project</button>
             </Link>
+            <br/>
             <Link to="/delete">
               <button className="btn btn-primary">Delete</button>
             </Link>
+            <br/>
+            <Link to= "/">
+              <button className="btn btn-primary">Logout</button>
+            </Link>
+            <br/>
           </div>
             {shots.map(shot => (
                 <div className="shot" key={shot.id}>
