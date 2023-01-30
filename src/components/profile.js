@@ -3,10 +3,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import DribbleShots from "./dribbleShots";
+import { Route, Routes } from "react-router-dom";
 
 let accessToken = "43179613111cce84d49ba4171c92163f0088573c1e513aef414a4766e41350a3";
 
-function Profile() {
+function Profile () {
   const [userData, setUserData] = useState(null);
   const fetchUser = () => {
     axios
@@ -27,12 +28,10 @@ function Profile() {
       return (
         <div className="App">
           <div className="card">
-            <h1>Welcome Dear User</h1>
-          <div>
-            <Link to="/create">
-              <button className="btn btn-primary">Add Project</button>
+            <h1>Hi, here's your dribble</h1>
+            <Link to= "/dribbleShots">
+              <button className="btn btn-primary">Your Shots</button>
             </Link>
-          </div>
           <div className="user-details">
             <div className="user-avatar">
               <img src={userData.avatar_url} alt={userData.name} />
@@ -44,11 +43,10 @@ function Profile() {
                 {userData.bio}
               </p>
               <p>{userData.location}</p>
-              <a href="mailto:{userData.email}">Send email</a> 
-              {/* eslint-disable-next-line */}
-              <a href={userData.html_url} target="_blank">
-                Dribbble
-              </a>
+              <button className="text-dark bg-light"><a href="mailto:{userData.email}">Send email</a> </button>
+              <button className="text-light bg-light"><a href={userData.html_url}>
+               Your Dribbble Profile
+              </a></button>
             </div>
           </div>
           </div>
@@ -67,7 +65,9 @@ function Profile() {
   return (
     <div>
       {renderUser()}
-      <DribbleShots/>
+      <Routes>
+        <Route path="/dribbleShots" element={<DribbleShots/>}></Route>
+      </Routes>
           </div>
   );
 }

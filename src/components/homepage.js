@@ -1,35 +1,58 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Routes, Route, Link } from "react-router-dom"
 import LoginForm from "./login";
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert2"
 
-const API_URL = 'http://localhost:3000/users'
+
+
 
 function Homepage() {
-  const [error, setError] = useState(null);
+  let navigate = useNavigate()
 
-  function handleSubmit (data) {
-  
-    return fetch(API_URL, {
-      method: 'POST', 
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new error('Failed to fetch data')
+  //setting up the sign up function
+
+  const [signupData, setSignupData] = useState({});
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const storedUsers = localStorage.getItem("users");
+    setUsers(storedUsers ? storedUsers : []);
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setSignupData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  function handleSubmit (e) {
+    e.preventDefault();
+    if (signupData.password !== signupData.confirmPassword) {
+      swal({
+        icon: "error",
+        text: "Your passwords do not match!",
+      });
+    } else {
+      const userExists = users.find((u) => u.email === signupData.email);
+      if (userExists) {
+        swal({
+          icon: "error",
+          text: "User with this email alredy exists!",
+        });
+      } else {
+        localStorage.setItem("users", JSON.stringify([...users, signupData]));
+        navigate("/login");
       }
-      return response.json()
-    })
-    .catch(error => {
-      console.error(error)
-    })
+    }
   }
+  
+    
 
   return (
-    <div className="App">
-      <div className="card">
+   <div> 
+   <div className="App">
+        <div className="card">
         <h1 className="card-header">Welcome to NewDrib</h1>
         <center style={{marginTop: 1 +'em', fontSize: 14 + 'px'}}>
                 <h4>About Us</h4>
@@ -49,9 +72,12 @@ Want more inspiration? Browse our search results.</p>
             <input type="text" className="form-control half" placeholder="Last name" />
           </div>
           <div className="form-group">
-            <input type="email" className="form-control" placeholder="E-mail" />
+            <input type="email" onChange={handleInputChange} className="form-control" placeholder="E-mail" required/>
           </div>
-          <button onSubmit={handleSubmit} className="submit-button">Sign up</button>
+          <div className="form-group">
+            <input type="password" onChange={handleInputChange} className="form-control" placeholder="Password" required/>
+          </div>
+          <button onClick={() => navigate("/login")} className="submit-button">Sign up</button>
           <label className="terms">
             <input type="checkbox" /> I have read and agreed to the <a href="/terms-n-conditions">Terms of Service</a>
           </label>
@@ -60,11 +86,10 @@ Want more inspiration? Browse our search results.</p>
             
         </div>
       </div>
+      </div>
     
       <Routes>
       <Route path="/login" element= {<LoginForm/>}></Route>
-      <Route path="/"></Route> 
-            
       </Routes>
  </div>
   );
