@@ -29,6 +29,10 @@ function Profile () {
         <div className="App">
           <div className="card">
             <h1>Hi, here's your dribble</h1>
+            <Link to= "/">
+              <button className="btn btn-primary">Logout</button>
+            </Link>
+            <br/>            
             <Link to= "/dribbleShots">
               <button className="btn btn-primary">Your Shots</button>
             </Link>
@@ -42,9 +46,13 @@ function Profile () {
                 <b>Bio:</b>
                 {userData.bio}
               </p>
-              <p>{userData.location}</p>
+              <b>location:</b>{userData.location} <br/>
+              <b>Username: </b>{userData.login} <br/>
+              <b>Username: </b>{userData.email} <br/>
+
               <button className="text-dark bg-light"><a href="mailto:{userData.email}">Send email</a> </button>
               <button className="text-light bg-light"><a href={userData.html_url}>
+                
                Your Dribbble Profile
               </a></button>
             </div>

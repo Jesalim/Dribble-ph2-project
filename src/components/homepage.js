@@ -59,27 +59,30 @@ function Homepage() {
                 <p>1,569 inspira  tional designs, illustrations, and graphic elements from the world’s best designers.
 Want more inspiration? Browse our search results.</p>
             </center>
+      <form onSubmit={handleSubmit}>
         <div className="signup-holder">
           Already have an account?
            <Link to="/login">Sign in here</Link>
         </div>
         <div className="form">
-         
-          <div className="form-group">
+        <div className="form-group">
             <input type="text" className="form-control half" placeholder="First name" />
             <input type="text" className="form-control half" placeholder="Last name" />
-          </div>
-          <div className="form-group">
+        </div>
+        <div className="form-group">
             <input type="email" onChange={handleInputChange} className="form-control" placeholder="E-mail" required/>
-          </div>
+        </div>
           <div className="form-group">
             <input type="password" onChange={handleInputChange} className="form-control" placeholder="Password" required/>
           </div>
           <button onClick={() => navigate("/login")} className="submit-button">Sign up</button>
           <label className="terms">
-            <input type="checkbox" /> I have read and agreed to the <a href="/terms-n-conditions">Terms of Service</a>
+            <input type="checkbox" required /> I have read and agreed to the <a href="/terms-n-conditions">Terms of Service</a>
           </label>
         </div>
+        
+        </form>
+        
         <div>
             
         </div>

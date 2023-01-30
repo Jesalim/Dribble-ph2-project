@@ -18,22 +18,31 @@ const DribbleShots = () => {
 
     return (
         
-        <div className="card-shots">
+        <div>
        <div className="dribble-shots">
             <h1>These are your shots</h1>
             <div>
             <Link to="/create">
               <button className="btn btn-primary">Add Project</button>
             </Link>
+            <br/>
             <Link to="/delete">
               <button className="btn btn-primary">Delete</button>
             </Link>
+            <br/>
+            <Link to= "/">
+              <button className="btn btn-primary">Logout</button>
+            </Link>
+            <br/>
           </div>
+          <div className="photos">
             {shots.map(shot => (
                 <div className="shot" key={shot.id}>
-                    <img src={shot.images.hidpi} alt={shot.title}/> <br/>
+                   <br/> <img src={shot.images.hidpi} alt={shot.title}/> <br/>
                 </div>
             ))}
+                </div>
+
         </div>
         </div>
         

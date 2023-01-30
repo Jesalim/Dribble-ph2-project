@@ -132,11 +132,14 @@
 }
 
 .card-shots {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 0.8rem;
-  box-shadow: 0 0 10px 0 #00000033;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40%;
+  height: 40%;
+}
+
+.photos {
+  width: 40%;
+  height: auto;
 }
