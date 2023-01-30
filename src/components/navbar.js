@@ -1,6 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import Homepage from "./homepage";
+import Profile from "./profile";
+import DribbleShots from "./dribbleShots";
+import LoginForm from "./login";
+
 
 function Navbar() {
 
@@ -14,7 +18,14 @@ function Navbar() {
 
                 </ul>
             </card>
-            <Homepage />
+            
+    <Routes>
+    <Route path="/" element= {<Homepage/>}></Route>
+      <Route path="/login" element= {<LoginForm/>}></Route>
+      <Route path="/profile" element= {<Profile/>}></Route>
+      <Route path="/dribbleShots" element= {<DribbleShots/>}></Route>
+     </Routes>
+            
         </div>
     )
 }

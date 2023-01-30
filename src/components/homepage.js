@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import { Routes, Route, Link } from "react-router-dom"
-import LoginForm from "./login";
+import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert2"
+
 
 
 
@@ -64,9 +64,7 @@ Want more inspiration? Browse our search results.</p>
            <Link to="/login">Sign in here</Link>
         </div>
         <div className="form">
-          <div className="form-group">
-            <input type="text" className="form-control" placeholder="Full name" />
-          </div>
+         
           <div className="form-group">
             <input type="text" className="form-control half" placeholder="First name" />
             <input type="text" className="form-control half" placeholder="Last name" />
@@ -88,9 +86,7 @@ Want more inspiration? Browse our search results.</p>
       </div>
       </div>
     
-      <Routes>
-      <Route path="/login" element= {<LoginForm/>}></Route>
-      </Routes>
+     
  </div>
   );
 }
