@@ -13,7 +13,7 @@ function Navbar() {
             <card className="nav">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <h1> <Link class="nav-link text-light bg-dark mt-2" aria-current="page" to="/">NewDrib</Link></h1>
+                        <h1> <Link class="nav-link text-light bg-dark" aria-current="page" to="/">NewDrib</Link></h1>
                     </li>
 
                 </ul>
@@ -22,7 +22,7 @@ function Navbar() {
     <Routes>
     <Route path="/" element= {<Homepage/>}></Route>
       <Route path="/login" element= {<LoginForm/>}></Route>
-      <Route path="/profile" element= {<Profile/>}></Route>
+      <Route path="/profile/*" element= {<Profile/>}></Route>
       <Route path="/dribbleShots" element= {<DribbleShots/>}></Route>
      </Routes>
             

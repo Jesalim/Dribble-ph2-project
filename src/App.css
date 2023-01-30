@@ -1,6 +1,6 @@
 .App {
   background: linear-gradient(135deg, #FF283D, #F7C2A3, #F7C2A3);
-  height: 100vh;
+  height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,7 +129,8 @@
   background: linear-gradient(135deg, #F7C2A3, #F7C2A3);
   justify-content: center;
   font-family: 'Franklin Gothic Medium';
-  
+  margin-top: 1mm;
+  width: auto;
 }
 
 .card-shots {
@@ -144,3 +145,4 @@
   width: 40%;
   height: auto;
 }
+

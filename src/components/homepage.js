@@ -70,10 +70,10 @@ Want more inspiration? Browse our search results.</p>
             <input type="text" className="form-control half" placeholder="Last name" />
         </div>
         <div className="form-group">
-            <input type="email" onChange={handleInputChange} className="form-control" placeholder="E-mail" required/>
+            <input type="email" onChange={handleInputChange} className="form-control half" placeholder="E-mail" required/>
         </div>
           <div className="form-group">
-            <input type="password" onChange={handleInputChange} className="form-control" placeholder="Password" required/>
+            <input type="password" onChange={handleInputChange} className="form-control half" placeholder="Password" required/>
           </div>
           <button onClick={() => navigate("/login")} className="submit-button">Sign up</button>
           <label className="terms">
