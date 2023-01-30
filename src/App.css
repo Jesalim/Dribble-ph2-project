@@ -123,3 +123,20 @@
   padding: 0 2px;
   text-decoration: none;
 }
+
+.nav {
+  background: linear-gradient(135deg, #F7C2A3, #F7C2A3);
+  justify-content: center;
+  font-family: 'Franklin Gothic Medium';
+  
+}
+
+.card-shots {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 0 10px 0 #00000033;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

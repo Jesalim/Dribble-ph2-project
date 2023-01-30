@@ -1,15 +1,13 @@
 // import logo from './logo.svg';
 import './App.css';
-import Homepage from './components/homepage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Profile from './components/profile';
+import Navbar from './components/navbar';
 
 
 function App() {
   return (
     <BrowserRouter className="App">
-      <Homepage />
-      <Profile/> 
+      <Navbar/>
     </BrowserRouter>
   );
 }

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { Link } from "react-router-dom";
 
 const accessToken = '43179613111cce84d49ba4171c92163f0088573c1e513aef414a4766e41350a3';
 
@@ -16,14 +17,26 @@ const DribbleShots = () => {
     }, []);
 
     return (
-        <div className="dribble-shots">
+        
+        <div className="card-shots">
+       <div className="dribble-shots">
             <h1>These are your shots</h1>
+            <div>
+            <Link to="/create">
+              <button className="btn btn-primary">Add Project</button>
+            </Link>
+            <Link to="/delete">
+              <button className="btn btn-primary">Delete</button>
+            </Link>
+          </div>
             {shots.map(shot => (
                 <div className="shot" key={shot.id}>
-                    <img src={shot.images.hidpi} alt={shot.title}/>
+                    <img src={shot.images.hidpi} alt={shot.title}/> <br/>
                 </div>
             ))}
         </div>
+        </div>
+        
     )
 }
 

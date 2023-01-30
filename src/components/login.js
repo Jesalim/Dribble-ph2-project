@@ -1,37 +1,42 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Profile from './profile';
-import { Routes, Route, Link } from "react-router-dom"
+import { Routes, Route, Link, NavLink } from "react-router-dom"
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
-function LoginForm () {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
+function LoginForm (props) {
+  const redirect = useNavigate()
 
-// const API_URL = 'https://api.dribbble.com/v2/user?access_token='
-const API_URL = 'http://localhost:3000/users'
-// const ACCESS_TOKEN = '43179613111cce84d49ba4171c92163f0088573c1e513aef414a4766e41350a3'
+  const [users, setUsers] = useState([]);
+  const [loginData, setLoginData] = useState({});
 
-function handleSubmit (data) {
-  
-  return fetch(API_URL, {
-    method: 'POST', 
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new error('Failed to fetch data')
+  useEffect(() => {
+    const storedUsers = localStorage.getItem("users");
+    setUsers(storedUsers ? JSON.parse(storedUsers) : []);
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setLoginData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const user = users.find(
+      (u) => u.email === loginData.email && u.password === loginData.password
+    );
+
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+      redirect("/user");
+    } else {
+      Swal({
+        icon: "error",
+        text: "Invalid credentials",
+      })
     }
-    return response.json()
-  })
-  .catch(error => {
-    console.error(error)
-  })
-}
-
+  }
 
 
   return (
@@ -44,9 +49,9 @@ function handleSubmit (data) {
       <input
         type="email"
         id="email"
-        value={email}
         placeholder="E-mail"
-        onChange={e => setEmail(e.target.value)}
+        onChange={handleInputChange}
+        required
       />
       
     
@@ -54,24 +59,16 @@ function handleSubmit (data) {
       <input
         type="password"
         id="password"
-        value={password}
         placeholder="Password"
-        onChange={e => setPassword(e.target.value)}
+        onChange={handleInputChange}
       />
-      
-      <br />
-      {error && <p>{error}</p>}
-      <Link to="profile" className="submit-button" type="submit" onClick={handleSubmit}>Login</Link>
+            <br />
+   
+        <button className="btn btn-primary"  type="submit" onClick={() => redirect("/profile")}>Login</button>
     </form>
     </div>
-    </div>
-    
-    
-    <Routes>
-      <Route path="/profile" element= {Profile}></Route>
-    </Routes>
-    
-    </div>
+   </div>
+  </div>
   );
 }
 
